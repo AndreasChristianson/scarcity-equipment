@@ -1,0 +1,13 @@
+{
+  "name": "scarcity-equipment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:AndreasChristianson/scarcity-equipment.git",
+  "author": "Andreas Christianson <sullage@pessimistic-it.com>",
+  "license": "NONE",
+  "dependencies": {},
+  "devDependencies": {
+    "aws-sdk": "^2.581.0",
+    "serverless-bundle": "^1.2.5"
+  }
+}
