@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo 'hello world'",
-    "deploy": "sls deploy --conceal --verbose"
+    "test": "jest",
+    "pretest": "standard",
+    "deploy": "sls deploy --conceal --verbose",
+    "predeploy": "yarn audit",
+    "dev": "nodemon --exec yarn local",
+    "local": "echo 'test'",
+    "prelocal": "yarn audit && yarn standard --fix"
   },
   "repository": "git@github.com:AndreasChristianson/scarcity-equipment.git",
   "author": "Andreas Christianson <sullage@pessimistic-it.com>",
@@ -12,7 +17,14 @@
   "dependencies": {},
   "devDependencies": {
     "aws-sdk": "^2.581.0",
+    "jest": "^24.9.0",
     "serverless": "^1.58.0",
-    "serverless-bundle": "^1.2.5"
+    "serverless-bundle": "^1.2.5",
+    "standard": "^14.3.1"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
   }
 }
