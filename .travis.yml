@@ -1,0 +1,21 @@
+language: node_js
+node_js: 
+env:
+  global:
+  - secure: Xz9FzghKAv5ex39ufOvUHVyUve7Pe7H8+wJyOoCwEsADlQmBoJ+vpsbNbqMmN1gCPQWpXjJuO3+K6mesY35XLPc7IOToUY5Zbp1kBiWe21QgAI7QsmWHbJ4pZq0AGqKuJaw5OL9mOL+s43uK1olwulovK7UvZ8Dw1Q7vX+sZLIlv2ayK3ZWjNkYnHgL2cRI5FpfiE7FImj0qNqPcD829hgUAmMP1Au72avlJjYu19O5sBm0YW7UJT+VDEnXRv7iW8F0SUNsr9301a3a3WpwFBf9fSD0pIFmZL8emizC6H4WG4zuSQgvHtKtUBe/yA9Kqi0hFrWu7l5rPEEwOQfxUluguqguDfE9vthNItRcbxk3Lb71vzJJen3CkKuUJ5IqpJZiQ/xnKv1cDsBbOVgp0oTreSjc5Nv9DZflGpdaGVcJkDoiHWu8IwJZPbbaPG6C0UcFWLsLFcgJw3OnaugwUdgdfyndPUcJFJt8F9/bdIXDeoO4qETrmkz7Wqd0cgIAnaGXhJcj/O+KoP6zMpymK/tlxnPAs91PsOPevQr2Xq2uqNDnfndqSq3i9BkSqIWzIEJwl8yVNzlSSp0zkJOVZlwYb7rZO+hXrehiEaOdTtWw9EUFGdQ9QIo8bN5Tk1NIn0JR3cCSTOCqn8u+zbtRlbdmHppLwaLiwG7dbLH2x/w0=
+  - secure: eoIUQQnN9n6ODubYdLtlEi9EVl2mE9xO+B2UQwPyJ9fWZqg2m7KUv+lSOAQdRJbBLFfR0oPXAUUB+kwIrhEej3XcxI/2hqveOSOfP6RLqQVKJIOeIAUp6RLc8ZZt81j3y5OlFd/bliyP7dVFAI3snBV16VCHwfg71wE4I5MwAIQSctF3Rn5gXqsuxvYf4B1FEIFbwq3EoP/bjPGP1Jn2Y4+Y6hBqwJLzI6o0HT6t7kcrKL1Dxy7V6UaLmxYgI8CYWBvgtd+8AFe0Mq5dNMBa9kYXXjMC4ooiZnW4fyEkHYKbWnH0lSpTc/IBFndaNJyVg2dQyCz+g1/xUF2i1F7EPN0fk6DO6Kg/7mFPPMA/OgIbkaq1qzFmdMyY7Qsg6PBry+pXDPxLKibxu2DsbYMt3DUkgLrocn9+XEC5ij406IqQA6dH8/NfXUEIcIKTUk0H6pH0OulnymDHmLM7qPzB9ya5LY/yftj86SCpyYAfc/UFIOBH211LOSRyXH7Op9xHJUJpG3HeQEHhW+ww0MY0cOIgYG7V/kVgdNqoVgWV+FuPOAU+0UdQ0dZ5e6Ql/WlhgpquMMy0Yk6fXCbIRxf4gtxAHvYAd518gDTA3UALYZ1Fd5fa+5sMGwwC3/D2xewKh7EKRdBgxKn9vjwRfnTRc9EMqHENVZNyjwNElsaw8zk=
+jobs:
+  include:
+  - stage: test
+    cache:
+      directories:
+      - node_modules
+    script:
+    - yarn test
+  - stage: deploy-dev
+    if: branch = master
+    cache:
+      directories:
+      - node_modules
+    script:
+    - yarn deploy --region us-west-2 --stage dev

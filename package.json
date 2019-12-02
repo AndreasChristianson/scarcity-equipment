@@ -2,12 +2,17 @@
   "name": "scarcity-equipment",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "test": "echo 'hello world'",
+    "deploy": "sls deploy --conceal --verbose"
+  },
   "repository": "git@github.com:AndreasChristianson/scarcity-equipment.git",
   "author": "Andreas Christianson <sullage@pessimistic-it.com>",
-  "license": "NONE",
+  "license": "UNLICENSED",
   "dependencies": {},
   "devDependencies": {
     "aws-sdk": "^2.581.0",
+    "serverless": "^1.58.0",
     "serverless-bundle": "^1.2.5"
   }
 }
