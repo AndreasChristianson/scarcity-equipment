@@ -7,6 +7,7 @@ plugins:
   # - serverless-offline
   # - serverless-bundle
   - serverless-domain-manager
+  - serverless-plugin-git-variables
 
 package:
   individually: true
@@ -16,6 +17,7 @@ custom:
     endpointType: regional
     domainName: api.${opt:stage, self:provider.stage}.scarcity.pessimistic-it.com
     basePath: equipment
+
 # custom:
 #   dynamodb:
 #     start:
@@ -44,7 +46,7 @@ provider:
 
 functions:
   weapon-post:
-    handler: weapon/post.post
+    handler: weapon/post.handler
     events:
       - http:
           path: weapon
