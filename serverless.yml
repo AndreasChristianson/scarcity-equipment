@@ -6,10 +6,16 @@ plugins:
   # - serverless-dynamodb-local
   # - serverless-offline
   # - serverless-bundle
+  - serverless-domain-manager
 
 package:
   individually: true
 
+custom:
+  customDomain:
+    endpointType: regional
+    domainName: api.${opt:stage, self:provider.stage}.scarcity.pessimistic-it.com
+    basePath: equipment
 # custom:
 #   dynamodb:
 #     start:
@@ -22,6 +28,7 @@ package:
 provider:
   name: aws
   runtime: nodejs12.x
+  endpointType: regional
   # environment:
   #   DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
   # iamRoleStatements:
@@ -36,12 +43,12 @@ provider:
   #     Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 functions:
-  create:
-    handler: weapon/hello.hello
+  weapon-post:
+    handler: weapon/post.post
     events:
       - http:
-          path: test
-          method: get
+          path: weapon
+          method: post
           cors: true
 
   # list:
