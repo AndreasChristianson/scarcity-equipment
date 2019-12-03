@@ -19,3 +19,12 @@ jobs:
       - node_modules
     script:
     - yarn deploy --region us-west-2 --stage dev
+  - stage: acceptance-dev
+    env:
+      - host=https://api.dev.scarcity.pessimistic-it.com
+    if: branch = master
+    cache:
+      directories:
+      - node_modules
+    script:
+    - yarn acceptance 
