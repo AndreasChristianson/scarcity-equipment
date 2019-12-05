@@ -1,17 +1,11 @@
 const { rollerFactory } = require('../statistics/roller')
 const { maces } = require('./maces')
-const { calculateItemLevel } = require('../statistics/item-calculations')
+const { calculateTemplateItemLevel, calculateItemLevel } = require('../statistics/item-calculations')
+
+const { templateSelectionPower } = require('../statistics/constants')
 // const { alter } = require('../alterations/alter')
 
 // const maxItemLevelSkew = 5
-// const origins = [
-//   'improvised',
-//   'standardized',
-//   'crude',
-//   'artisan',
-//   'exotic',
-//   'unique'
-// ]
 
 // const category = [
 //   'short blade',
@@ -29,11 +23,6 @@ const { calculateItemLevel } = require('../statistics/item-calculations')
 //   'piercing'
 // ]
 
-// const handednesses = [
-//   'one hand',
-//   'hand and a half',
-//   'two hand'
-// ]
 const templates = [
   ...maces
 ]
@@ -61,24 +50,13 @@ exports.handler = async (event, context) => {
     .filter(({ origin: templateOrigin }) => !origin || templateOrigin === origin)
     .filter(({ handedness: templateHandedness }) => !handedness || handedness === templateHandedness)
 
-  const template = roller.weighted(validTemplates.map((template) => ({
+  const template = roller.weighted(validTemplates.map(({ relativeWeight, ...template }) => ({
     value: template,
-    relativeWeight: template.relativeWeight / Math.pow(1 + Math.abs(actualItemLevel - template.baseItemLevel), 1)
+    relativeWeight: relativeWeight / Math.pow(1 + Math.abs(actualItemLevel - calculateTemplateItemLevel(template)), templateSelectionPower)
   })))
   console.debug(`template selected: ${template.name}`)
 
   let weapon = roller.collapse(template)
-
-  if (!weapon.baseDamage) {
-    weapon = {
-      ...weapon,
-      baseDamage: roller.roll({
-        mean: weapon.baseItemLevel,
-        dev: weapon.baseItemLevel * 0.2,
-        min: 0
-      }) * weapon.delay
-    }
-  }
 
   // while (Math.abs(actualItemLevel - calculateItemLevel(weapon)) > maxItemLevelSkew) {
   //   const currentItemLevelDifference = actualItemLevel - calculateItemLevel(weapon)
@@ -88,6 +66,7 @@ exports.handler = async (event, context) => {
   weapon = {
     ...weapon,
     itemLevel: calculateItemLevel(weapon),
+    templateItemLevel: calculateTemplateItemLevel(template),
     id
   }
 

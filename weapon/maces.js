@@ -10,28 +10,20 @@ const oneHandMace = {
   handedness: 'one hand',
   range: {
     min: 0.5,
-    mean: 0.75,
-    dev: 0.1
+    mean: 0.75
   },
   delay: {
     min: 1,
-    mean: 1.8,
-    dev: 0.2
+    mean: 1.8
   },
   weight: {
     min: 1,
     max: 5,
-    mean: 2,
-    sdtDev: 0.5
-  },
-  damageTypes: [{
-    type: 'bludgeoning',
-    multiplier: 1
-  }]
+    mean: 2
+  }
 }
-const stick = {
+const improvisedWoodenClub = {
   ...oneHandMace,
-  name: 'stick',
   material: [
     {
       value: 'wood',
@@ -40,19 +32,31 @@ const stick = {
     ...woodTypes
   ],
   origin: 'improvised',
-  baseItemLevel: 5,
+  damageTypes: [{
+    type: 'bludgeoning',
+    amount: {
+      min: 0,
+      mean: 10
+    }
+  }],
+  critChance: {
+    min: 0,
+    mean: 0.02
+  }
+}
+const stick = {
+  ...improvisedWoodenClub,
+  name: 'stick',
   description: 'a short, thick stick',
   flavor: {
     text: 'Speak softly and carry a big stick; you will go far.',
     source: 'Theodore Roosevelt'
   }
-
 }
 const branch = {
   ...stick,
   name: 'branch',
   description: 'a stout branch with a knot on one end',
-  material: woodTypes,
   flavor: undefined
 }
 
@@ -61,18 +65,16 @@ const _switch = { // switch is a reserved word
   name: 'switch',
   relativeWeight: 20,
   description: 'a long thin branch that leaves welts and cuts',
-  baseItemLevel: 15,
-  damageTypes: [{
-    type: 'bludgeoning',
-    multiplier: 0.85
-  }, {
-    type: 'slashing',
-    multiplier: {
-      min: 0,
-      mean: 0.15,
-      sdtDev: 0.05
-    }
-  }],
+  damageTypes: [
+    ...branch.damageTypes,
+    {
+      type: 'slashing',
+      amount: {
+        min: 0,
+        mean: 2,
+        sdtDev: 0.1
+      }
+    }],
   flavor: {
     text: 'Twentieth-century legal scholar William L. Prosser wrote that here was "probably no truth to the legend" that a husband was allowed to beat his wife "with a stick no thicker than his thumb"'
   }
@@ -81,23 +83,19 @@ const stalk = {
   ...branch,
   name: 'stalk',
   description: 'a fibrous stalk from some small plant',
-  material: 'wood',
   relativeWeight: 15
 }
 const twig = {
   ...branch,
   name: 'twig',
   description: 'a twisted, wicked, piece of a tree',
-  baseItemLevel: 30,
   relativeWeight: 20
 }
 const timber = {
   ...branch,
   name: 'timber',
   description: 'a rough length of lumber',
-  origin: 'standardized',
   relativeWeight: 5,
-  baseItemLevel: 55,
   flavor: [{
     value: {
       source: 'J. Willard Marriott',
@@ -110,6 +108,13 @@ const timber = {
       text: 'Out of the crooked timber of humanity, no straight thing was ever made.'
     },
     relativeWeight: 1
+  }],
+  damageTypes: [{
+    type: 'bludgeoning',
+    amount: {
+      min: 0,
+      mean: 50
+    }
   }]
 }
 
@@ -118,11 +123,17 @@ const bat = {
   name: 'bat',
   material: 'wood',
   description: 'a weighted wooden club with stop by the grip',
-  baseItemLevel: 50,
   origin: 'standardized',
   flavor: {
     text: 'By regulation, it may be no more than 7.0cm in diameter at the thickest part and no more than 1.067m in length.'
-  }
+  },
+  damageTypes: [{
+    type: 'bludgeoning',
+    amount: {
+      min: 0,
+      mean: 25
+    }
+  }]
 }
 
 exports.maces = [

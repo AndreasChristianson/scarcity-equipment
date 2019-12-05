@@ -1,7 +1,7 @@
 const Chance = require('chance')
 exports.rollerFactory = (seed) => {
   const chance = new Chance(seed)
-  const roll = ({ min = Number.MIN_VALUE, max = Number.MAX_VALUE, mean, dev }) => {
+  const roll = ({ min = Number.MIN_VALUE, max = Number.MAX_VALUE, mean, dev = mean * 0.1 }) => {
     let result
     do {
       result = chance.normal({
