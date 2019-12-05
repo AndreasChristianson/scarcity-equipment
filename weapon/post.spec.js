@@ -10,7 +10,8 @@ describe('post', () => {
     weaponId = chance.guid()
     event = {
       body: JSON.stringify({
-        id: weaponId
+        id: weaponId,
+        itemLevel: chance.d100()
       })
     }
   })

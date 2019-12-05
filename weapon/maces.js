@@ -1,7 +1,9 @@
 const { woodTypes } = require('../data/materials')
+const { weapon } = require('../item-base')
+
 const mace = {
-  category: 'mace',
-  relativeWeight: 100
+  ...weapon,
+  category: 'mace'
 }
 const oneHandMace = {
   ...mace,
@@ -21,7 +23,11 @@ const oneHandMace = {
     max: 5,
     mean: 2,
     sdtDev: 0.5
-  }
+  },
+  damageTypes: [{
+    type: 'bludgeoning',
+    multiplier: 1
+  }]
 }
 const stick = {
   ...oneHandMace,
@@ -34,16 +40,13 @@ const stick = {
     ...woodTypes
   ],
   origin: 'improvised',
-  itemPoints: 5,
+  baseItemLevel: 5,
   description: 'a short, thick stick',
   flavor: {
     text: 'Speak softly and carry a big stick; you will go far.',
     source: 'Theodore Roosevelt'
-  },
-  damage: [{
-    type: 'bludgeoning',
-    multiplier: 1
-  }]
+  }
+
 }
 const branch = {
   ...stick,
@@ -58,8 +61,8 @@ const _switch = { // switch is a reserved word
   name: 'switch',
   relativeWeight: 20,
   description: 'a long thin branch that leaves welts and cuts',
-  itemPoints: 10,
-  damage: [{
+  baseItemLevel: 15,
+  damageTypes: [{
     type: 'bludgeoning',
     multiplier: 0.85
   }, {
@@ -80,15 +83,13 @@ const stalk = {
   description: 'a fibrous stalk from some small plant',
   material: 'wood',
   relativeWeight: 15
-
 }
 const twig = {
   ...branch,
   name: 'twig',
   description: 'a twisted, wicked, piece of a tree',
-  itemPoints: 30,
+  baseItemLevel: 30,
   relativeWeight: 20
-
 }
 const timber = {
   ...branch,
@@ -96,7 +97,7 @@ const timber = {
   description: 'a rough length of lumber',
   origin: 'standardized',
   relativeWeight: 5,
-  itemPoints: 50,
+  baseItemLevel: 55,
   flavor: [{
     value: {
       source: 'J. Willard Marriott',
@@ -117,7 +118,7 @@ const bat = {
   name: 'bat',
   material: 'wood',
   description: 'a weighted wooden club with stop by the grip',
-  itemPoints: 50,
+  baseItemLevel: 50,
   origin: 'standardized',
   flavor: {
     text: 'By regulation, it may be no more than 7.0cm in diameter at the thickest part and no more than 1.067m in length.'
@@ -179,7 +180,7 @@ exports.maces = [
 //     category: 'mace',
 //     handedness: 'one hand',
 //     origin: 'mass produced',
-//     itemPoints: 30,
+//     baseItemLevel: 30,
 //     description: [{
 //       value: '',
 //       relativeWeight: 5
@@ -217,7 +218,7 @@ exports.maces = [
 //       mean: 2.3,
 //       dev: 0.2
 //     },
-//     damage: [{
+//     damageTypes: [{
 //       type: 'bludgeoning',
 //       multiplier: {
 //         min: 0.9,

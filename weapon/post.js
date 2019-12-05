@@ -1,5 +1,9 @@
 const { rollerFactory } = require('../statistics/roller')
 const { maces } = require('./maces')
+const { calculateItemLevel } = require('../statistics/item-calculations')
+// const { alter } = require('../alterations/alter')
+
+// const maxItemLevelSkew = 5
 // const origins = [
 //   'improvised',
 //   'standardized',
@@ -40,16 +44,17 @@ exports.handler = async (event, context) => {
     category,
     origin,
     handedness,
-    itemPoints = 0
+    itemLevel: requestedItemLevel
   } = JSON.parse(event.body)
 
   const roller = rollerFactory(id)
 
-  const actualItemPoints = roller.roll({
-    mean: itemPoints,
-    dev: itemPoints * 0.2,
+  const actualItemLevel = roller.roll({
+    mean: requestedItemLevel,
+    dev: requestedItemLevel * 0.2,
     min: 0
   })
+  console.debug('generating at itemLevel', { requestedItemLevel, actualItemLevel })
 
   const validTemplates = templates
     .filter(({ category: templateCategory }) => !category || templateCategory === category)
@@ -58,22 +63,43 @@ exports.handler = async (event, context) => {
 
   const template = roller.weighted(validTemplates.map((template) => ({
     value: template,
-    relativeWeight: 1 / Math.pow(1 + Math.abs(actualItemPoints - template.itemPoints), 2)
+    relativeWeight: template.relativeWeight / Math.pow(1 + Math.abs(actualItemLevel - template.baseItemLevel), 1)
   })))
+  console.debug(`template selected: ${template.name}`)
 
-  const weapon = roller.collapse(template)
+  let weapon = roller.collapse(template)
 
-  console.debug('generated weapon', weapon)
+  if (!weapon.baseDamage) {
+    weapon = {
+      ...weapon,
+      baseDamage: roller.roll({
+        mean: weapon.baseItemLevel,
+        dev: weapon.baseItemLevel * 0.2,
+        min: 0
+      }) * weapon.delay
+    }
+  }
+
+  // while (Math.abs(actualItemLevel - calculateItemLevel(weapon)) > maxItemLevelSkew) {
+  //   const currentItemLevelDifference = actualItemLevel - calculateItemLevel(weapon)
+  //   weapon = alter(weapon, currentItemLevelDifference, roller)
+  // }
+
+  weapon = {
+    ...weapon,
+    itemLevel: calculateItemLevel(weapon),
+    id
+  }
+
+  // todo: save weapon
+
+  console.debug('generated weapon', { weapon })
 
   return {
     statusCode: 200,
     headers: {
       version: process.env.GIT_COMMIT_LONG
     },
-    body: JSON.stringify({
-      id,
-      ...weapon,
-      itemPoints: actualItemPoints
-    })
+    body: JSON.stringify(weapon)
   }
 }

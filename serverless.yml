@@ -31,7 +31,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   endpointType: regional
-  # environment:
+    # environment:
   #   DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
   # iamRoleStatements:
   #   - Effect: Allow
