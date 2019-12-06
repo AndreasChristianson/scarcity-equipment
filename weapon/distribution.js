@@ -8,8 +8,8 @@ exports.handler = async () => {
   const distribution =
     templates.map(({ relativeWeight, name, ...otherFields }) => ({
       name,
-      baseItemLevel: calculateTemplateItemLevel(otherFields),
-      dps: calculateTemplateDps(otherFields),
+      templateItemLevel: calculateTemplateItemLevel(otherFields),
+      templateDps: calculateTemplateDps(otherFields),
       relativeWeight
     }))
 

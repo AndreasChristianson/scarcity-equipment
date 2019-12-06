@@ -53,7 +53,7 @@ exports.woodTypes = [
   },
   {
     value: 'black cherry',
-    relativeWeight: 10
+    relativeWeight: 20
   },
   {
     value: 'pin cherry',
@@ -65,7 +65,7 @@ exports.woodTypes = [
   },
   {
     value: 'eastern cottonwood',
-    relativeWeight: 5
+    relativeWeight: 15
   },
   {
     value: 'elm',
@@ -98,6 +98,10 @@ exports.woodTypes = [
   {
     value: 'bitternut hickory',
     relativeWeight: 5
+  },
+  {
+    value: 'hickory',
+    relativeWeight: 50
   },
   {
     value: 'pignut hickory',
@@ -141,7 +145,7 @@ exports.woodTypes = [
   },
   {
     value: 'maple',
-    relativeWeight: 50
+    relativeWeight: 100
   },
   {
     value: 'red maple',
@@ -221,7 +225,7 @@ exports.woodTypes = [
   },
   {
     value: 'black walnut',
-    relativeWeight: 5
+    relativeWeight: 15
   },
   {
     value: 'black willow',
@@ -229,7 +233,7 @@ exports.woodTypes = [
   },
   {
     value: 'eucalyptus',
-    relativeWeight: 5
+    relativeWeight: 2
   },
   {
     value: 'dogwood',
@@ -272,11 +276,11 @@ exports.metalTypes = [
   },
   {
     value: 'iron',
-    relativeWeight: 50
+    relativeWeight: 200
   },
   {
     value: 'carbon steel',
-    relativeWeight: 30
+    relativeWeight: 75
   },
   {
     value: 'stainless steel',

@@ -9,9 +9,12 @@ exports.origins = {
     itemLevelPerDps: 1.5
   },
   artisan: {
-    itemLevelPerDps: 0.7
+    itemLevelPerDps: 0.8
   },
   exotic: {
+    itemLevelPerDps: 0.9
+  },
+  magical: {
     itemLevelPerDps: 0.8
   },
   unique: {
@@ -21,9 +24,9 @@ exports.origins = {
 
 exports.handednesses = {
   'one hand': {
-    itemLevelPerDps: 2
+    itemLevelPerDps: 1.8
   },
   'two hand': {
-    itemLevelPerDps: 1
+    itemLevelPerDps: 1.2
   }
 }

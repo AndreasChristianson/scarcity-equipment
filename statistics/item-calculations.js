@@ -30,13 +30,17 @@ exports.calculateTemplateItemLevel = (itemTemplate) => {
 exports.calculateTemplateDps = (itemTemplate) => {
   const damagePerSwing = itemTemplate.damageTypes
     .reduce((sum, { amount: { mean } }) => sum + mean, 0)
-  const dps = damagePerSwing / itemTemplate.delay.mean
+  const critDamage = itemTemplate.critMultiplier.mean * damagePerSwing
+  const dps = (damagePerSwing * (1 - itemTemplate.critChance.mean) + critDamage * itemTemplate.critChance.mean) / itemTemplate.delay.mean
+
   return dps
 }
 
 const calculateWeaponDps = (weapon) => {
   const damagePerSwing = weapon.damageTypes
     .reduce((sum, { amount }) => sum + amount, 0)
-  const dps = damagePerSwing / weapon.delay
+  const critDamage = weapon.critMultiplier * damagePerSwing
+  const dps = (damagePerSwing * (1 - weapon.critChance) + critDamage * weapon.critChance) / weapon.delay
+
   return dps
 }
