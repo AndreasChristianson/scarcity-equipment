@@ -1,7 +1,7 @@
 const { woodTypes, metalTypes } = require('../data/materials')
 const { weapon } = require('../item-base')
 
-const mace = {
+const maceBase = {
   ...weapon,
   category: 'mace',
   critMultiplier: {
@@ -12,8 +12,8 @@ const mace = {
     mean: 0.04
   }
 }
-const oneHandMace = {
-  ...mace,
+const oneHandMaceBase = {
+  ...maceBase,
   handedness: 'one hand',
   range: {
     min: 0.5,
@@ -29,7 +29,7 @@ const oneHandMace = {
   }
 }
 const improvisedWoodenClub = {
-  ...oneHandMace,
+  ...oneHandMaceBase,
   material: [
     {
       value: 'wood',
@@ -121,8 +121,7 @@ const timber = {
 }
 
 const massProducedClub = {
-  ...oneHandMace,
-  name: 'club',
+  ...oneHandMaceBase,
   material: [
     {
       value: 'wood',
@@ -146,6 +145,7 @@ const massProducedClub = {
 
 const club = {
   ...massProducedClub,
+  name: 'club',
   origin: 'crude',
   description: 'a short staff, made of wood, wielded as a weapon',
   flavor: {
@@ -197,7 +197,6 @@ const billyClub = {
     mean: 1
   },
   relativeWeight: 15
-
 }
 
 const truncheon = {
@@ -207,6 +206,23 @@ const truncheon = {
     text: 'The truncheon acted as the policeman\'s "Warrant Card" as the Royal Crest attached to it indicated the policeman\'s authority.'
   },
   relativeWeight: 50
+}
+
+const kubotan = {
+  ...truncheon,
+  name: 'kubotan',
+  description: 'a short, thin, lightweight club often used by law enforcement officers',
+  flavor: {
+    text: 'to encourage compliance'
+  },
+  relativeWeight: 10,
+  damageTypes: truncheon.damageTypes.map((damageType) => ({
+    ...damageType,
+    amount: {
+      ...damageType.amount,
+      mean: damageType.amount.mean * 0.8
+    }
+  }))
 }
 
 const cosh = {
@@ -243,6 +259,24 @@ const sap = {
   name: 'sap',
   material: 'wood',
   relativeWeight: 10
+}
+
+const leangle = {
+  ...sap,
+  name: 'leangle',
+  relativeWeight: 3,
+  description: 'An Aboriginal fighting club with a hooked striking head.',
+
+  damageTypes: sap.damageTypes.map((damageType) => ({
+    ...damageType,
+    amount: {
+      ...damageType.amount,
+      mean: damageType.amount.mean * 1.8
+    }
+  })),
+  flavor: {
+    text: 'The name comes from Kulin languages such as Wemba-Wemba and Woiwurrung, based on the word lia (tooth).'
+  }
 }
 
 const clava = {
@@ -343,7 +377,50 @@ const kiyoga = {
     mean: baton.range.mean * 2
   },
   relativeWeight: 15
+}
 
+const mace = {
+  ...massProducedClub,
+  name: 'mace',
+  material: metalTypes,
+  description: 'a metal club with a heavy head on the end, designed to deliver very powerful blows.',
+  delay: {
+    ...massProducedClub.delay,
+    mean: massProducedClub.delay.mean * 1.2
+  },
+  weight: {
+    ...massProducedClub.weight,
+    mean: massProducedClub.weight.mean * 3
+  },
+  damageTypes: massProducedClub.damageTypes.map((damageType) => ({
+    ...damageType,
+    amount: {
+      ...damageType.amount,
+      mean: damageType.amount.mean * 2.7
+    }
+  }))
+}
+
+const spikedMace = {
+  ...mace,
+  name: 'spiked mace',
+  material: metalTypes,
+  description: 'a metal club with a heavy head on the end, designed to deliver very powerful blows.',
+  delay: {
+    ...massProducedClub.delay,
+    mean: massProducedClub.delay.mean * 1.2
+  },
+  weight: {
+    ...massProducedClub.weight,
+    mean: massProducedClub.weight.mean * 3
+  },
+  damageTypes: massProducedClub.damageTypes.map((damageType) => ({
+    ...damageType,
+    amount: {
+      ...damageType.amount,
+      mean: damageType.amount.mean * 2.7
+    }
+  }))
 }
 
 const twoHandMace = {
@@ -406,7 +483,7 @@ const metalKanabo = {
     ...damageType,
     amount: {
       ...damageType.amount,
-      mean: damageType.amount.mean * 1.5
+      mean: damageType.amount.mean * 1.9
     }
   })),
   relativeWeight: 15
@@ -445,6 +522,7 @@ exports.maces = [
   club,
   baton,
   truncheon,
+  kubotan,
   blackjack,
   sap,
   cosh,
@@ -453,11 +531,15 @@ exports.maces = [
   singleStick,
   cudgel,
   kiyoga,
+  // metal
+  mace,
+  spikedMace,
   // traditional/exotic
   aklys,
   clava,
   jutte,
   knobkierrie,
+  leangle,
   // two hand
   // exotic
   kanabo,
