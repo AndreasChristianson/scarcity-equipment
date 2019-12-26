@@ -1,11 +1,11 @@
 import Roller from "../../statistics/roller";
-import items from "../../templates";
+import getAllItemTemplates from "../../templates";
 
 const getValidItems = attributes =>
   Object.entries(attributes).reduce(
     (itemList, [attributeName, attributeValue]) =>
       itemList.filter(item => item[attributeName] === attributeValue),
-    items
+    getAllItemTemplates()
   );
 
 export const handler = async (event, context) => {
