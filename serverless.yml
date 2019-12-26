@@ -5,7 +5,7 @@ service: scarcity-equipment
 plugins:
   # - serverless-dynamodb-local
   # - serverless-offline
-  # - serverless-bundle
+  - serverless-bundle
   - serverless-domain-manager
   - serverless-plugin-git-variables
 
@@ -46,14 +46,14 @@ provider:
 
 functions:
   weapon-generate:
-    handler: weapon/post.handler
+    handler: src/handlers/weapon/post.handler
     events:
       - http:
           path: weapon
           method: post
           cors: true
   weapon-list:
-    handler: weapon/distribution.handler
+    handler: src/handlers/weapon/distribution.handler
     events:
       - http:
           path: weapon-distribution

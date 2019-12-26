@@ -1,1 +1,0 @@
-exports.templateSelectionPower = 2
