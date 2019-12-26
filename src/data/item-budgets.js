@@ -17,7 +17,7 @@ export const fabricationLookup = {
   },
   unique: {
     // Harpe
-    itemLevelPerDps: 0.6
+    itemLevelPerDps: 0.7
   }
 };
 

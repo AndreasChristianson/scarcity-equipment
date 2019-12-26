@@ -1,1 +1,1 @@
-export const templateSelectionPower = 2;
+export const templateSelectionPower = 2.5;

@@ -10,6 +10,7 @@ import Kubotan from "./kubotan";
 import Sap from "./sap";
 import Singlestick from "./singlestick";
 import Truncheon from "./truncheon";
+import WarHammer from "./war-hammer";
 
 export default [
   Bat,
@@ -23,5 +24,6 @@ export default [
   Kubotan,
   Sap,
   Singlestick,
-  Truncheon
+  Truncheon,
+  WarHammer
 ];

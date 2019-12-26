@@ -1,4 +1,4 @@
-import ImprovisedWoodenClub from "./abstract-improvised-wooded-club";
+import ImprovisedWoodenClub from "./abstract-improvised-wooden-club";
 
 class BirchRod extends ImprovisedWoodenClub {
   name = "birch rod";

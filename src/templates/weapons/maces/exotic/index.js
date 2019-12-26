@@ -4,5 +4,7 @@ import Jutte from "./jutte";
 import Kiyoga from "./kiyoga";
 import Knobkierrie from "./knobkierrie";
 import Leangle from "./leangle";
+import Gada from "./gada";
+import Mere from "./mere";
 
-export default [Aklys, Clava, Jutte, Kiyoga, Knobkierrie, Leangle];
+export default [Mere, Gada, Aklys, Clava, Jutte, Kiyoga, Knobkierrie, Leangle];

@@ -1,5 +1,6 @@
 import Roller from "../../statistics/roller";
 import { getAllItemTemplates } from "../../templates";
+import uuid from "uuid/v4";
 
 const getValidItems = attributes =>
   Object.entries(attributes).reduce(
@@ -10,7 +11,7 @@ const getValidItems = attributes =>
 
 export const handler = async (event, context) => {
   const {
-    id,
+    id = uuid(),
     itemLevel: requestedItemLevel,
     ...requestedAttributes
   } = JSON.parse(event.body);
@@ -18,6 +19,17 @@ export const handler = async (event, context) => {
   const roller = new Roller(id);
 
   const validItems = getValidItems(requestedAttributes);
+
+  console.debug(
+    `possible templates: ${validItems.length}`,
+    validItems
+      .sort((left, right) => left.itemLevel - right.itemLevel)
+      .map(item => ({
+        name: item.name,
+        itemLevel: item.itemLevel.toFixed(2),
+        weight: item.comparativeWeight(requestedItemLevel).toFixed(4)
+      }))
+  );
 
   validItems.forEach(item => {
     [
@@ -33,14 +45,6 @@ export const handler = async (event, context) => {
       });
     });
   });
-
-  console.debug(
-    `possible templates: ${validItems.length}`,
-    validItems.map(({ name, itemLevel }) => ({
-      name,
-      itemLevel
-    }))
-  );
 
   const selectedItem = roller.weighted(
     validItems.map(item => ({

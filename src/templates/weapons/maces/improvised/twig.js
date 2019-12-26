@@ -1,4 +1,4 @@
-import ImprovisedWoodenClub from "./abstract-improvised-wooded-club";
+import ImprovisedWoodenClub from "./abstract-improvised-wooden-club";
 
 class Twig extends ImprovisedWoodenClub {
   name = "twig";

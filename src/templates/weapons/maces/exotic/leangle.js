@@ -4,7 +4,7 @@ import Metal from "../../metal-mixin";
 
 class Leangle extends Metal(OneHander(AbstractMace)) {
   name = "leangle";
-  damagePerSwing = this.damagePerSwing * 3.0;
+  damagePerSwing = this.damagePerSwing * 2.0;
   critChance = this.critChance * 1.4;
   delay = this.delay * 0.9;
   rarity = "scarce";

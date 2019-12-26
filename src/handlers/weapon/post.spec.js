@@ -11,7 +11,8 @@ describe("post", () => {
     event = {
       body: JSON.stringify({
         id: weaponId,
-        itemLevel: chance.d100()
+        itemLevel: chance.d100(),
+        name: "singlestick"
       })
     };
   });

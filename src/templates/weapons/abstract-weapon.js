@@ -27,7 +27,7 @@ class Weapon extends Item {
   delay = 2.0;
   critDamage = 2.0;
   critChance = 0.1;
-  weight = 1200.0;
+  weight = 1100.0;
 }
 
 export default Weapon;
