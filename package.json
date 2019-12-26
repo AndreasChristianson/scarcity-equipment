@@ -11,7 +11,8 @@
     "predeploy": "yarn audit",
     "dev": "onchange 'src/**/*.js' -- prettier --write {{changed}}",
     "acceptance": "jest acceptance",
-    "local": "sls invoke local --function weapon-list"
+    "weapon-distribution": "sls invoke local --function weapon-list",
+    "generate-weapon": "sls invoke local --function weapon-generate --data \"{\\\"body\\\":\\\"{\\\\\\\"id\\\\\\\":\\\\\\\"$(uuidgen)\\\\\\\",\\\\\\\"itemLevel\\\\\\\":10}\\\"}\""
   },
   "repository": "git@github.com:AndreasChristianson/scarcity-equipment.git",
   "author": "Andreas Christianson <sullage@pessimistic-it.com>",

@@ -1,7 +1,7 @@
-import items from "../../templates";
+import { getAllItemTemplates } from "../../templates";
 
 exports.handler = async () => {
-  const distribution = items
+  const distribution = getAllItemTemplates()
     .filter(({ type }) => type === "weapon")
     .sort((left, right) => left.itemLevel - right.itemLevel)
     .sort((left, right) => left.relativeWeight - right.relativeWeight);

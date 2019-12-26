@@ -1,5 +1,5 @@
 import Roller from "../../statistics/roller";
-import getAllItemTemplates from "../../templates";
+import { getAllItemTemplates } from "../../templates";
 
 const getValidItems = attributes =>
   Object.entries(attributes).reduce(
