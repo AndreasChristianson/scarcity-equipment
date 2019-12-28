@@ -4,6 +4,7 @@ class Mace extends MassProducedMetalClub {
   name = "mace";
   description =
     "a metal club with a heavy head on the end, designed to deliver very powerful blows.";
+  rarity = "abundant";
 }
 
 export default Mace;

@@ -6,6 +6,7 @@ class BirchRod extends ImprovisedWoodenClub {
   description = "a bundle of leafless twigs bound together";
   delay = this.delay * 0.85;
   damageType = "slashing";
+  rarity = "uncommon";
 }
 
 export default BirchRod;

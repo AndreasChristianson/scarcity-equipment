@@ -31,16 +31,25 @@ export const handednessLookup = {
 };
 
 export const rarityLookup = {
+  abundant: {
+    power: 3.5
+  },
   common: {
-    relativeWeight: 125.0
+    power: 3.0
   },
   uncommon: {
-    relativeWeight: 25.0
+    power: 2.0
+  },
+  few: {
+    power: 1.5
   },
   scarce: {
-    relativeWeight: 5.0
+    power: 1.0
   },
   rare: {
-    relativeWeight: 1.0
+    power: 0.0
+  },
+  singular: {
+    power: -1.0
   }
 };

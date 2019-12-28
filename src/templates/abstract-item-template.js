@@ -3,8 +3,11 @@ import { rarityLookup } from "../data/item-budgets";
 
 class Item {
   alterations = [];
+  prefixes = [];
+  suffixes = [];
   weight = 0.0;
   rarity = "common";
+  rarityDelta = 0;
   fabrication = "mass produced";
 
   comparativeWeight(requestedItemLevel) {
@@ -14,7 +17,15 @@ class Item {
   }
 
   get relativeWeight() {
-    return rarityLookup[this.rarity].relativeWeight;
+    const rarityPower = rarityLookup[this.rarity].power;
+    const power = rarityPower + this.rarityDelta;
+    return Math.pow(5.0, power);
+  }
+
+  get title() {
+    const prefixString = this.prefixes.join(", ");
+    const suffixString = this.suffixes.join(", ");
+    return `${prefixString} ${this.name} ${suffixString}`.trim();
   }
 }
 

@@ -25,9 +25,10 @@ export const handler = async (event, context) => {
     validItems
       .sort((left, right) => left.itemLevel - right.itemLevel)
       .map(item => ({
-        name: item.name,
-        itemLevel: item.itemLevel.toFixed(2),
-        weight: item.comparativeWeight(requestedItemLevel).toFixed(4)
+        l: item.itemLevel.toFixed(2),
+        c: item.comparativeWeight(requestedItemLevel).toFixed(3),
+        r: item.relativeWeight.toFixed(1),
+        n: item.title
       }))
   );
 
@@ -52,7 +53,7 @@ export const handler = async (event, context) => {
       relativeWeight: item.comparativeWeight(requestedItemLevel)
     }))
   );
-  console.debug(`template selected: ${selectedItem.name}`);
+  console.debug(`template selected: ${selectedItem.title}`);
 
   const weapon = {
     ...selectedItem,

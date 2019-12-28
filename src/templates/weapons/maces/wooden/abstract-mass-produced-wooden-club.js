@@ -1,6 +1,6 @@
-import OneHander from "../../one-hander-mixin";
+import OneHander from "../../../mixins/one-hander-mixin";
 import AbstractMace from "../abstract-mace";
-import Wooden from "../../wooden-mixin";
+import Wooden from "../../../mixins/wooden-mixin";
 
 class MassProducedWoodenClub extends Wooden(OneHander(AbstractMace)) {
   damagePerSwing = this.damagePerSwing * 2.0;

@@ -8,3 +8,5 @@ import Gada from "./gada";
 import Mere from "./mere";
 
 export default [Mere, Gada, Aklys, Clava, Jutte, Kiyoga, Knobkierrie, Leangle];
+
+export const expandable = [Aklys, Jutte];

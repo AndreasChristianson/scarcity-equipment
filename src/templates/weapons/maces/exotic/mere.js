@@ -1,5 +1,5 @@
 import PatuTawaka from "../artisan/patu-tawaka";
-import Stone from "../../stone-mixin";
+import Stone from "../../../mixins/stone-mixin";
 
 class Mere extends Stone(PatuTawaka) {
   name = "mere";

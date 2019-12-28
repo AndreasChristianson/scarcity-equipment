@@ -26,7 +26,7 @@ class Weapon extends Item {
   type = "weapon";
   delay = 2.0;
   critDamage = 2.0;
-  critChance = 0.1;
+  critChance = 0.05;
   weight = 1100.0;
 }
 

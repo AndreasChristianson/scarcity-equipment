@@ -27,3 +27,5 @@ export default [
   TrainingMace,
   Crowbar
 ];
+
+export const expandable = [Handle];

@@ -1,6 +1,6 @@
-import OneHander from "../../one-hander-mixin";
+import OneHander from "../../../mixins/one-hander-mixin";
 import AbstractMace from "../abstract-mace";
-import Metal from "../../metal-mixin";
+import Metal from "../../../mixins/metal-mixin";
 
 class Jutte extends Metal(OneHander(AbstractMace)) {
   name = "jutte";

@@ -12,7 +12,7 @@ import Singlestick from "./singlestick";
 import Truncheon from "./truncheon";
 import WarHammer from "./war-hammer";
 
-export default [
+const all = [
   Bat,
   Baton,
   BillyClub,
@@ -27,3 +27,7 @@ export default [
   Truncheon,
   WarHammer
 ];
+
+export default all;
+
+export const expandable = all;

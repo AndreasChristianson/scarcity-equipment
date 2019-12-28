@@ -2,7 +2,7 @@ import MassProducedWoodenClub from "./abstract-mass-produced-wooden-club";
 
 class Truncheon extends MassProducedWoodenClub {
   name = "truncheon";
-  damagePerSwing = this.damagePerSwing * 1.5;
+  damagePerSwing = this.damagePerSwing * 1.55;
   rarity = "uncommon";
   description = "a straight, fixed-length baton.";
   flavor =

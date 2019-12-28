@@ -1,6 +1,6 @@
-import OneHander from "../../one-hander-mixin";
+import OneHander from "../../../mixins/one-hander-mixin";
 import AbstractMace from "../abstract-mace";
-import Stone from "../../stone-mixin";
+import Stone from "../../../mixins/stone-mixin";
 
 class Clava extends Stone(OneHander(AbstractMace)) {
   name = "clava mere okewa";

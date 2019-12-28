@@ -5,6 +5,7 @@ class Club extends MassProducedWoodenClub {
   description = "a short staff, made of wood, wielded as a weapon";
   flavor = "Don't loaf and invite inspiration; light out after it with a club.";
   flavorSource = "Jack London";
+  rarity = "abundant";
 }
 
 export default Club;
