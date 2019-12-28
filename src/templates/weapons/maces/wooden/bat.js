@@ -5,6 +5,7 @@ class Bat extends MassProducedWoodenClub {
   description = "a weighted wooden club with stop by the grip";
   flavor =
     "By regulation, it may be no more than 7.0cm in diameter at the thickest part and no more than 1.067m in length.";
+  delay = this.delay * 0.9;
 }
 
 export default Bat;

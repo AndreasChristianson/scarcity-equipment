@@ -6,7 +6,7 @@ import Wicked from "../mixins/prefixes/wicked-mixin";
 
 const weapons = [...maces];
 const expandableWeapons = [...expandableMaces];
-const weaponExpansions = [WellCrafted, Exceptional, Practice, Wicked, Flaming];
+const weaponExpansions = [WellCrafted, Exceptional, Practice, Wicked];
 
 const expandedWeapons = expandableWeapons.reduce(
   (list, weapon) => [...list, ...weaponExpansions.map(mixin => mixin(weapon))],

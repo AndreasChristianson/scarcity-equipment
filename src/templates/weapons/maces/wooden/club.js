@@ -6,6 +6,7 @@ class Club extends MassProducedWoodenClub {
   flavor = "Don't loaf and invite inspiration; light out after it with a club.";
   flavorSource = "Jack London";
   rarity = "abundant";
+  damagePerSwing = this.damagePerSwing * 0.9;
 }
 
 export default Club;

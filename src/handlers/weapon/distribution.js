@@ -3,13 +3,12 @@ import { getAllItemTemplates } from "../../templates";
 exports.handler = async () => {
   const distribution = getAllItemTemplates()
     .filter(({ type }) => type === "weapon")
-    .sort((left, right) => left.itemLevel - right.itemLevel)
-    .sort((left, right) => left.relativeWeight - right.relativeWeight);
+    .sort((left, right) => left.itemLevel - right.itemLevel);
   console.debug(
-    distribution.map(({ name, itemLevel, rarity }) => ({
-      name,
+    distribution.map(({ title, itemLevel, dps }) => ({
       iLevel: itemLevel.toFixed(2),
-      rarity
+      dps: dps.toFixed(2),
+      title
     }))
   );
   return {
