@@ -3,7 +3,7 @@ const Practice = Base =>
     prefixes = [...this.prefixes, "practice"];
     damagePerSwing = this.damagePerSwing * 0.45;
     material = "wood";
-    rarityDelta = this.rarityDelta - 1;
+    rarityDelta = this.rarityDelta - 1.6;
   };
 
 export default Practice;

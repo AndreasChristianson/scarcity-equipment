@@ -1,7 +1,7 @@
 import MassProducedWoodenClub from "./abstract-mass-produced-wooden-club";
 
 class BillyClub extends MassProducedWoodenClub {
-  name = "bludgeon";
+  name = "billy club";
   damagePerSwing = this.damagePerSwing * 1.2;
   description = "a roughly cylindrical club made of wood.";
   flavor =

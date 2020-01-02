@@ -1,10 +1,7 @@
 import OneHander from "../../../mixins/one-hander-mixin";
 import AbstractMace from "../abstract-mace";
+import Unique from "../../../mixins/unique-mixin";
 
-class UniqueMace extends OneHander(AbstractMace) {
-  damagePerSwing = this.damagePerSwing * 1.5;
-  rarity = "singular";
-  fabrication = "unique";
-}
+class UniqueMace extends Unique(OneHander(AbstractMace)) {}
 
 export default UniqueMace;

@@ -21,8 +21,13 @@ export const handler = async (event, context) => {
   const validItems = getValidItems(requestedAttributes);
 
   console.debug(
-    `possible templates: ${validItems.length}`,
+    `likely templates. (total templates ${validItems.length})`,
     validItems
+      .filter(
+        ({ itemLevel }) =>
+          itemLevel > requestedItemLevel * 0.9 &&
+          itemLevel < requestedItemLevel * 1.1
+      )
       .sort((left, right) => left.itemLevel - right.itemLevel)
       .map(item => ({
         l: item.itemLevel.toFixed(2),

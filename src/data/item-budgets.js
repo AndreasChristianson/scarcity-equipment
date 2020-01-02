@@ -23,7 +23,7 @@ export const fabricationLookup = {
 
 export const handednessLookup = {
   "one hand": {
-    itemLevelPerDps: 2.0
+    itemLevelPerDps: 1.6
   },
   "two hand": {
     itemLevelPerDps: 1.0

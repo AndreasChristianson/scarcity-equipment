@@ -1,4 +1,7 @@
-import { templateSelectionPower } from "../statistics/constants";
+import {
+  templateSelectionPower,
+  relativeWeightBase
+} from "../statistics/constants";
 import { rarityLookup } from "../data/item-budgets";
 
 class Item {
@@ -19,7 +22,7 @@ class Item {
   get relativeWeight() {
     const rarityPower = rarityLookup[this.rarity].power;
     const power = rarityPower + this.rarityDelta;
-    return Math.pow(5.0, power);
+    return Math.pow(relativeWeightBase, power);
   }
 
   get title() {
