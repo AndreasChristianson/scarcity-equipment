@@ -22,7 +22,7 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
-    "aws-sdk": "^2.581.0",
+    "aws-sdk": "^2.814.0",
     "babel-jest": "^24.9.0",
     "frisby": "^2.1.2",
     "jest": "^24.9.0",
